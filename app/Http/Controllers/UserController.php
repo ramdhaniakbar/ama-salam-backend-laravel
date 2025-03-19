@@ -3,12 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreUserRequest;
-use App\Http\Resources\UserCollection;
-use App\Http\Resources\UserResource;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class UserController extends Controller
@@ -22,7 +19,7 @@ class UserController extends Controller
             'success' => true,
             'statusCode' => 200,
             'message' => 'Users retrieved successfully',
-            'data' => User::paginate(10)
+            'data' => User::orderBy('id', 'desc')->paginate(10)
         ], 200);
     }
 
